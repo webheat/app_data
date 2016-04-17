@@ -18,7 +18,7 @@ class News extends CI_Controller {
     $this->load->view('templates/footer');
     }
 
-    public function query_view($slug = NULL)
+/*    public function query_view($slug = NULL)
     {
         //$data['news_item'] = $this->news_model->get_news($slug);
         $data['news_item'] = $this->news_model->query($slug);
@@ -33,6 +33,38 @@ class News extends CI_Controller {
     $this->load->view('news/view', $data);
     $this->load->view('templates/footer');
     }
+*/
+
+
+    public function query($slug = NULL)
+    {
+        //$data['news_item'] = $this->news_model->get_news($slug);
+        //$data['news_item'] = $this->news_model->query($slug);
+        $data['news_item'] = $this->news_model->query();
+	//var_dump($data);
+	//var_dump($data['news_item']);
+	//echo $data['news_item']['title'];
+	//echo $data['news_item'][0];
+	
+	//var_dump($data['news_item'][0]);
+	//echo $data['news_item'][0]['appname'];
+    if (empty($data['news_item']))
+    {
+        show_404();
+    }
+
+    $data['title'] = "query function";
+    $data['appname'] = $data['news_item'][0]['appname'];
+    //$data['appname'] = $data['news_item']['appname'];
+    $data['appname'] = $data['news_item'][0]['appname'];
+    //var_dump($data);
+    //echo $data['appname'];
+    $this->load->view('templates/header', $data);
+    //$this->load->view('news/view', $data);
+    $this->load->view('news/query-view', $data);
+    $this->load->view('templates/footer');
+    }
+
 
 
     public function view($slug = NULL)
@@ -49,6 +81,8 @@ class News extends CI_Controller {
     $this->load->view('news/view', $data);
     $this->load->view('templates/footer');
     }
+
+
     public function create()
     {
     $this->load->helper('form');

@@ -16,7 +16,8 @@ class News_model extends CI_Model {
     }
 
     //$query = $this->db->get_where('news', array('slug' => $slug));
-    $query = $this->db->get_where('dayoo_app', array('slug' => $slug));
+    //$query = $this->db->get_where('dayoo_app', array('slug' => $slug));
+    $query = $this->db->simple_query('selecct * from dayoo_app');
     return $query->row_array();
     }
 
@@ -33,6 +34,7 @@ class News_model extends CI_Model {
 
     //$query = $this->db->get_where('news', array('slug' => $slug));
     $query = $this->db->get_where('dayoo_app', array('slug' => $slug));
+    //$query = $this->db->get_where('dayoo_app');
     return $query->row_array();
     }
 
